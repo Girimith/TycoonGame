@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
                 transform.LookAt(direction);
 
         }
-        
+
 
         if (papers.Count > 1)
         {
@@ -78,6 +78,8 @@ public class PlayerManager : MonoBehaviour
 
                     if (hit.collider.transform.parent.GetComponent<Printer>().YAxis > 0f)
                         hit.collider.transform.parent.GetComponent<Printer>().YAxis -= 0.17f;
+
+                   
                 }
             }
 
@@ -106,6 +108,10 @@ public class PlayerManager : MonoBehaviour
                     delay += 0.02f;
                 }
 
+                //WorkDesk.parent.GetChild(WorkDesk.parent.childCount - 1).GetComponent<Renderer>().enabled = false;
+
+               
+                
             }
         }
         else
@@ -119,6 +125,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.CompareTag("pp"))
         {
+           
             other.GetComponent<workDesk>().Work();
         }
 
@@ -126,12 +133,20 @@ public class PlayerManager : MonoBehaviour
         {
             Destroy(other.gameObject);
             
-            PlayerPrefs.SetInt("dollar",PlayerPrefs.GetInt("dollar") + 5);
+            PlayerPrefs.SetInt("Rupees",PlayerPrefs.GetInt("Rupees") + 5);
 
-            MoneyCounter.text = PlayerPrefs.GetInt("dollar").ToString("C0");
+            MoneyCounter.text = PlayerPrefs.GetInt("Rupees").ToString();
         }
     }
 
 
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("pp"))
+        {
+            delay = 0f;
+        }
+        
+        
+    }
 }

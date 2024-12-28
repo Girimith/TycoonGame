@@ -16,32 +16,32 @@ public class UnlockDesk : MonoBehaviour
     
     void Start()
     {
-        dollarAmount.text = deskPrice.ToString("C0");
+        dollarAmount.text = deskPrice.ToString();
         deskRemainPrice = deskPrice;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && PlayerPrefs.GetInt("dollar") > 0)
+        if (other.CompareTag("Player") && PlayerPrefs.GetInt("Rupees") > 0)
         {
             ProgressValue = Mathf.Abs(1f - CalculateMoney() / deskPrice) ;
 
-            if (PlayerPrefs.GetInt("dollar") >= deskPrice)
+            if (PlayerPrefs.GetInt("Rupees") >= deskPrice)
             {
-                PlayerPrefs.SetInt("dollar", PlayerPrefs.GetInt("dollar") - deskPrice);
+                PlayerPrefs.SetInt("Rupees", PlayerPrefs.GetInt("Rupees") - deskPrice);
 
                 deskRemainPrice = 0;
             }
             else
             {
-                deskRemainPrice -= PlayerPrefs.GetInt("dollar");
-                PlayerPrefs.SetInt("dollar", 0);
+                deskRemainPrice -= PlayerPrefs.GetInt("Rupees");
+                PlayerPrefs.SetInt("Rupees", 0);
             }
 
             progressBar.fillAmount = ProgressValue;
 
-            PlayerManager.PlayerManagerInstance.MoneyCounter.text = PlayerPrefs.GetInt("dollar").ToString("C0");
-            dollarAmount.text = deskRemainPrice.ToString("C0");
+            PlayerManager.PlayerManagerInstance.MoneyCounter.text = PlayerPrefs.GetInt("Rupees").ToString();
+            dollarAmount.text = deskRemainPrice.ToString();
 
             if (deskRemainPrice == 0)
             {
@@ -61,6 +61,6 @@ public class UnlockDesk : MonoBehaviour
 
     private float CalculateMoney()
     {
-        return deskRemainPrice - PlayerPrefs.GetInt("dollar");
+        return deskRemainPrice - PlayerPrefs.GetInt("Rupees");
     }
 }

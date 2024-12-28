@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7848950506377552837}
   - component: {fileID: 7895226958951459447}
   m_Layer: 0
-  m_Name: Rupees
-  m_TagString: dollar
+  m_Name: Utility
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
