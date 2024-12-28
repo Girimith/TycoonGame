@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class workDesk : MonoBehaviour
 {
-    public Animator female_anim;
     [SerializeField] private Transform DollarPlace;
     [SerializeField] private GameObject Dollar;
     private float YAxis;
@@ -19,7 +18,6 @@ public class workDesk : MonoBehaviour
 
     public void Work()
     {
-        female_anim.SetBool("work",true);
         
         InvokeRepeating("DOSubmitPapers",2f,1f);
 
@@ -63,7 +61,6 @@ public class workDesk : MonoBehaviour
         }
         else
         {
-            female_anim.SetBool("work",false);
 
             var Desk = transform.parent;
 

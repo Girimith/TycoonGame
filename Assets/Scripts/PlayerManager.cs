@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour
     private Vector3 direction;
     private Camera Cam;
     [SerializeField] private float playerSpeed;
-    //private Animator PlrAnim;
     [SerializeField] private List<Transform> papers = new List<Transform>();
     [SerializeField] private Transform paperPlace;
     private float YAxis, delay;
@@ -21,7 +20,6 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         Cam = Camera.main;
-        //PlrAnim = GetComponent<Animator>();
         
         papers.Add(paperPlace);
 
@@ -48,31 +46,7 @@ public class PlayerManager : MonoBehaviour
                 transform.LookAt(direction);
 
         }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            //if (papers.Count > 1)
-            //{
-            //    PlrAnim.SetBool("carry",false);
-            //    PlrAnim.SetBool("RunWithPapers",true);
-            //}
-            //else
-            //{
-            //    PlrAnim.SetBool("run",true);
-            //}
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            //PlrAnim.SetBool("run",false);
-
-            //if (papers.Count > 1)
-            //{
-            //    PlrAnim.SetBool("carry",true);
-            //    PlrAnim.SetBool("RunWithPapers",false);
-            //}
-
-        }
+        
 
         if (papers.Count > 1)
         {
@@ -104,9 +78,6 @@ public class PlayerManager : MonoBehaviour
 
                     if (hit.collider.transform.parent.GetComponent<Printer>().YAxis > 0f)
                         hit.collider.transform.parent.GetComponent<Printer>().YAxis -= 0.17f;
-
-                    //PlrAnim.SetBool("carry",true);
-                    //PlrAnim.SetBool("run",false);
                 }
             }
 
@@ -135,14 +106,6 @@ public class PlayerManager : MonoBehaviour
                     delay += 0.02f;
                 }
 
-                WorkDesk.parent.GetChild(WorkDesk.parent.childCount - 1).GetComponent<Renderer>().enabled = false;
-
-                //if (papers.Count <= 1)
-                //{
-                //    PlrAnim.SetBool("idle",true);
-                //    PlrAnim.SetBool("RunWithPapers",false);
-                //}
-                
             }
         }
         else
@@ -170,27 +133,5 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("pp"))
-        {
-            //PlrAnim.SetBool("RunWithPapers",false);
-            //PlrAnim.SetBool("idle",false);
-            //PlrAnim.SetBool("run",true);
-            delay = 0f;
-        }
-        
-        if (other.CompareTag("table"))
-        {
-            //if (papers.Count > 1)
-            //{
-            //    PlrAnim.SetBool("carry",false);
-            //    PlrAnim.SetBool("RunWithPapers",true);
-            //}
-            //else
-            //{
-            //    PlrAnim.SetBool("run",true);
-            //}
-        }
-    }
+    
 }
